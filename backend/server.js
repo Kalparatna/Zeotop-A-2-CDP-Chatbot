@@ -6,20 +6,16 @@ const { getChatbotResponse } = require("./geminiService");
 dotenv.config();
 const app = express();
 
-// Allow CORS for specific frontend domains (Replace with your frontend URL)
-const allowedOrigins = [
-    "https://your-frontend-domain.vercel.app",
-    "http://localhost:3000"
-];
-
+// Allow CORS
 app.use(cors({
-    origin: allowedOrigins,
+    origin: ["https://your-frontend-domain.vercel.app", "http://localhost:3000"],
     methods: ["GET", "POST"],
     allowedHeaders: ["Content-Type"]
 }));
 
 app.use(express.json());
 
+// API Route
 app.post("/api/chat", async (req, res) => {
     const { question } = req.body;
     try {
@@ -30,6 +26,6 @@ app.post("/api/chat", async (req, res) => {
     }
 });
 
-const PORT = process.env.PORT || 5000;
+// Fix: Use process.env.PORT assigned by Vercel
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-
