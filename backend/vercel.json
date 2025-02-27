@@ -9,7 +9,7 @@
     "routes": [
       {
         "src": "/api/chat",
-        "dest": "/server.js"
+        "dest": "/api/chat"
       }
     ]
   }
